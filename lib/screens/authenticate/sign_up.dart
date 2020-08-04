@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:y_wait/screens/home/business/business_home.dart';
+import 'package:y_wait/screens/home/business/business_bottom_navbar.dart';
 import 'package:y_wait/screens/home/business/get_business_details.dart';
 import 'package:y_wait/screens/home/customer/customer_bottom_navbar.dart';
 import 'package:y_wait/screens/home/customer/get_customer_details.dart';
@@ -65,7 +65,7 @@ class _SignUpState extends State<SignUp> {
               });
             } else {
               Navigator.pushReplacement(context, MaterialPageRoute(
-                  builder: (context) => BusinessHome()
+                  builder: (context) => BusinessNavBar()
               ));
             }
           } // end of auth
@@ -113,22 +113,6 @@ class _SignUpState extends State<SignUp> {
     return isLoading ? Loading() :
     Scaffold(
       backgroundColor: Color(0xff1f1f1f),
-//      appBar: AppBar(
-//        centerTitle: true,
-//        title: Image.asset('assets/images/ywait.jpeg', height: 160.0),
-//        flexibleSpace: Container(
-//          decoration: BoxDecoration(
-//              gradient: LinearGradient(
-//                  begin: Alignment.centerLeft,
-//                  end: Alignment.centerRight,
-//                  colors: [
-//                    Color(0xff1f1f1f),
-//                    Color(0xff1f1f1f)
-//                  ]
-//              )
-//          ),
-//        ),
-//      ),
       body: isLoading ? Container(
         child: Loading(),
       ) : Container(

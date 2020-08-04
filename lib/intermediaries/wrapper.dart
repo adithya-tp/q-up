@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:y_wait/models/user.dart';
 import 'package:y_wait/screens/authenticate/authenticate.dart';
-import 'package:y_wait/screens/home/business/business_home.dart';
+import 'package:y_wait/screens/home/business/business_bottom_navbar.dart';
 import 'package:y_wait/screens/home/customer/customer_bottom_navbar.dart';
 import 'package:y_wait/screens/loading.dart';
 import 'package:y_wait/services/database.dart';
@@ -42,7 +42,7 @@ class _WrapperState extends State<Wrapper> {
         if(customerOrNot) {
           return CustomerNavBar();
         } else {
-          return BusinessHome();
+          return BusinessNavBar();
         }
       }
     }

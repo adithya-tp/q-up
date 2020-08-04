@@ -13,5 +13,7 @@ class CustomerData {
 class BusinessData {
   final String uid;
   final String businessName;
-  BusinessData({this.uid, this.businessName});
+  final String category;
+  final int maxCap;
+  BusinessData({this.uid, this.businessName, this.category, this.maxCap});
 }

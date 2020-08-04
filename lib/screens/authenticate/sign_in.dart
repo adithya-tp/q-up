@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:y_wait/screens/home/business/business_home.dart';
+import 'package:y_wait/screens/home/business/business_bottom_navbar.dart';
 import 'package:y_wait/screens/home/customer/customer_bottom_navbar.dart';
 import 'package:y_wait/screens/loading.dart';
 import 'package:y_wait/services/auth.dart';
@@ -71,22 +71,6 @@ class _SignInState extends State<SignIn> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return isLoading ? Loading() :
     Scaffold(
-//      appBar: AppBar(
-//        centerTitle: true,
-//        title: Image.asset('assets/images/ywait.jpeg', height: 160.0),
-//        flexibleSpace: Container(
-//          decoration: BoxDecoration(
-//            gradient: LinearGradient(
-//              begin: Alignment.centerLeft,
-//              end: Alignment.centerRight,
-//              colors: [
-//                Color(0xff1f1f1f),
-//                Color(0xff1f1f1f)
-//              ]
-//            )
-//          ),
-//        ),
-//      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
@@ -205,7 +189,7 @@ class _SignInState extends State<SignIn> {
                                 }
                                 else {
                                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                      builder: (BuildContext context) => BusinessHome()
+                                      builder: (BuildContext context) => BusinessNavBar()
                                   ));
                                 }
                               }

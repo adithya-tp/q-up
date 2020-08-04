@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:y_wait/models/user.dart';
 
 class DatabaseService {
 
@@ -33,6 +34,32 @@ class DatabaseService {
   Future<bool> getCustomerOrNot() async {
     return await userCollection.document(uid).get()
         .then((DocumentSnapshot ds) => ds["isCustomer"]);
+  }
+
+  BusinessData _businessDataFromSnapshot(DocumentSnapshot snapshot) {
+    return BusinessData(
+      uid: uid,
+      businessName: snapshot.data['businessName'],
+      category: snapshot.data['category'],
+      maxCap: snapshot.data['maxCap'],
+    );
+  }
+
+  Stream<BusinessData> get businessData {
+    return businessCollection.document(uid).snapshots()
+        .map(_businessDataFromSnapshot);
+  }
+
+  CustomerData _customerDataFromSnapshot(DocumentSnapshot snapshot) {
+    return CustomerData(
+      uid: uid,
+      customerName: snapshot.data['customerName'],
+    );
+  }
+
+  Stream<CustomerData> get customerData {
+    return customerCollection.document(uid).snapshots()
+        .map(_customerDataFromSnapshot);
   }
 
 }
