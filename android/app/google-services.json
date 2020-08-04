@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "213727214306",
+    "firebase_url": "https://y-wait-1b634.firebaseio.com",
+    "project_id": "y-wait-1b634",
+    "storage_bucket": "y-wait-1b634.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213727214306:android:f83e541ee3321e87a7bcbb",
+        "android_client_info": {
+          "package_name": "com.example.y_wait"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213727214306-e89vva17tvfvbqprr8toqbukvdu3jvti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvzRr098nSixhUVG9agW-lc_pjNuWOqZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213727214306-e89vva17tvfvbqprr8toqbukvdu3jvti.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
