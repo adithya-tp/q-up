@@ -129,219 +129,227 @@ class _SignUpState extends State<SignUp> {
             )
         ),
         child: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 2.0),
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(top: 10, left: 15),
-                  child: Image.asset(
-                    'assets/images/logo.png',
-                    height: 150.0,
-                    width: 600.0,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 160.0, left: 15.0, right: 15.0),
-                  height: 590.0,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(color: Colors.grey.withOpacity(0.8),
-                          spreadRadius: 5.0,
-                          blurRadius: 7.0,
-                          offset: Offset(0, 3)),
-                    ],
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.white,
-                  ),
-                ),
-                Column(
+          child: Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 2.0),
+                child: Stack(
                   children: <Widget>[
-                    Form(
-                      key: _formKey,
-                      child: Container(
-                        margin: EdgeInsets.only(top: 240.0, left: 20, right: 20.0),
-                        padding: EdgeInsets.symmetric(horizontal: 30.0),
-                        child: Column(
-                          children: <Widget>[
-                            TextFormField(
-                              validator: (val) {
-                                return val.length > 0 ? null : "Please enter an e-mail";
-                              },
-                              controller: emailTextEditingController,
-                              cursorColor: Colors.black,
-                              decoration: textInputDecoration.copyWith(hintText: 'E-mail'),
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20.0
-                              ),
-                            ),
-                            SizedBox(height: 10.0,),
-                            TextFormField(
-                              validator: (val) {
-                                return val.length > 5 ? null : "Enter a password with at least 6 characters";
-                              },
-                              obscureText: true,
-                              controller: passwordTextEditingController,
-                              cursorColor: Colors.black,
-                              decoration: textInputDecoration.copyWith(hintText: 'Password'),
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20.0
-                              ),
-                            ),
-                          ],
-                        ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10, left: 15),
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        height: 150.0,
+                        width: 600.0,
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 30.0),
-                      child: Column(
-                        children: <Widget>[
-                          SizedBox(height: 5.0,),
-                          Text(
-                            error,
-                            style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 14.0
+                      margin: EdgeInsets.only(top: 160.0, left: 20.0, right: 20.0),
+                      height: 590.0,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(color: Colors.grey.withOpacity(0.8),
+                              spreadRadius: 5.0,
+                              blurRadius: 7.0,
+                              offset: Offset(0, 3)),
+                        ],
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Colors.white,
+                      ),
+                    ),
+                    Column(
+                      children: <Widget>[
+                        Form(
+                          key: _formKey,
+                          child: Container(
+                            margin: EdgeInsets.only(top: 240.0, left: 20, right: 20.0),
+                            padding: EdgeInsets.symmetric(horizontal: 30.0),
+                            child: Column(
+                              children: <Widget>[
+                                TextFormField(
+                                  validator: (val) {
+                                    return val.length > 0 ? null : "Please enter an e-mail";
+                                  },
+                                  controller: emailTextEditingController,
+                                  cursorColor: Colors.black,
+                                  decoration: textInputDecoration.copyWith(hintText: 'E-mail'),
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20.0
+                                  ),
+                                ),
+                                SizedBox(height: 10.0,),
+                                TextFormField(
+                                  validator: (val) {
+                                    return val.length > 5 ? null : "Enter a password with at least 6 characters";
+                                  },
+                                  obscureText: true,
+                                  controller: passwordTextEditingController,
+                                  cursorColor: Colors.black,
+                                  decoration: textInputDecoration.copyWith(hintText: 'Password'),
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20.0
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          SizedBox(height: 20.0,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 30.0),
+                          child: Column(
                             children: <Widget>[
+                              SizedBox(height: 5.0,),
                               Text(
-                                "Pick an account type",
-                                style: GoogleFonts.robotoSlab(
-                                  fontSize: 20.0,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
+                                error,
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 14.0
                                 ),
+                              ),
+                              SizedBox(height: 20.0,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text(
+                                    "Pick an account type",
+                                    style: GoogleFonts.robotoSlab(
+                                      fontSize: 20.0,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 15.0,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        isBusinessHighlighted = !isBusinessHighlighted;
+                                        if(isCustomerHighlighted)
+                                          isCustomerHighlighted = false;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 50.0,
+                                      width: 100.0,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        color: isBusinessHighlighted == false ? Color(0xff1f1c18) : Colors.greenAccent,
+                                        borderRadius: BorderRadius.circular(10.0),
+                                      ),
+                                      child: Text(
+                                        "Retailer",
+                                        style: GoogleFonts.robotoSlab(
+                                          fontSize: 18.0,
+                                          color: isBusinessHighlighted == false ? Colors.white : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        isCustomerHighlighted = !isCustomerHighlighted;
+                                        if(isBusinessHighlighted)
+                                          isBusinessHighlighted = false;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 50.0,
+                                      width: 100.0,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        color: isCustomerHighlighted == false ? Color(0xff1f1c18) : Colors.greenAccent,
+                                        borderRadius: BorderRadius.circular(10.0),
+                                      ),
+                                      child: Text(
+                                        "Customer",
+                                        style: GoogleFonts.robotoSlab(
+                                          fontSize: 18.0,
+                                          color: isCustomerHighlighted == false ? Colors.white : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5.0,),
+                              Text(
+                                errorCategory,
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 14.0
+                                ),
+                              ),
+                              SizedBox(height: 50.0,),
+                              GestureDetector(
+                                onTap: () {
+                                  if(isBusinessHighlighted)
+                                    validateSignUp("business");
+                                  else
+                                    validateSignUp("customer");
+                                },
+                                child: Container(
+                                  height: 50.0,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xff302b63),
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  child: Text(
+                                    "Continue with Registration",
+                                    style: GoogleFonts.robotoSlab(
+                                      fontSize: 20.0,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 20.0,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text(
+                                    "Already have an account? ",
+                                    style: TextStyle(
+                                        color: Colors.black
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      widget.toggleAuthenticationView();
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                      ),
+                                      padding: EdgeInsets.symmetric(vertical: 20.0),
+                                      child: Text(
+                                        "Sign In here",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            decoration: TextDecoration.underline
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               )
                             ],
                           ),
-                          SizedBox(height: 15.0,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isBusinessHighlighted = !isBusinessHighlighted;
-                                    if(isCustomerHighlighted)
-                                      isCustomerHighlighted = false;
-                                  });
-                                },
-                                child: Container(
-                                  height: 50.0,
-                                  width: 150.0,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    color: isBusinessHighlighted == false ? Color(0xff1f1c18) : Colors.greenAccent,
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  child: Text(
-                                    "Retailer",
-                                    style: GoogleFonts.robotoSlab(
-                                      fontSize: 20.0,
-                                      color: isBusinessHighlighted == false ? Colors.white : Colors.black,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isCustomerHighlighted = !isCustomerHighlighted;
-                                    if(isBusinessHighlighted)
-                                      isBusinessHighlighted = false;
-                                  });
-                                },
-                                child: Container(
-                                  height: 50.0,
-                                  width: 150.0,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    color: isCustomerHighlighted == false ? Color(0xff1f1c18) : Colors.greenAccent,
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  child: Text(
-                                    "Customer",
-                                    style: GoogleFonts.robotoSlab(
-                                      fontSize: 20.0,
-                                      color: isCustomerHighlighted == false ? Colors.white : Colors.black,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 5.0,),
-                          Text(
-                            errorCategory,
-                            style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 14.0
-                            ),
-                          ),
-                          SizedBox(height: 50.0,),
-                          GestureDetector(
-                            onTap: () {
-                              if(isBusinessHighlighted)
-                                validateSignUp("business");
-                              else
-                                validateSignUp("customer");
-                            },
-                            child: Container(
-                              height: 50.0,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                color: Color(0xff302b63),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              child: Text(
-                                "Continue with Registration",
-                                style: GoogleFonts.robotoSlab(
-                                  fontSize: 20.0,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 20.0,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                "Already have an account? ",
-                                style: TextStyle(
-                                    color: Colors.black
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  widget.toggleAuthenticationView();
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                                  child: Text(
-                                    "Sign In here",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        decoration: TextDecoration.underline
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    )
+                        )
+                      ],
+                    ),
                   ],
                 ),
-              ],
-            ),
+              ),
+              SizedBox(height: 50.0),
+            ],
           ),
         ),
       ),

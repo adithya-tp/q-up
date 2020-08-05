@@ -10,12 +10,18 @@ class DatabaseService {
   final CollectionReference customerCollection = Firestore.instance.collection('customers');
   final CollectionReference businessCollection = Firestore.instance.collection('business');
 
-  Future<void> updateBusinessData({String businessName, String category, int maxCap}) async {
+//  Future<void> updateBusinessCollection() async {
+//    final CollectionReference specificBusinessCollection = Firestore.instance.collection('$this.uid');
+//    await updateBusinessData(peopleInLine: )
+//  }
+
+  Future<void> updateBusinessData({String businessName, String category, int maxCap, int peopleInLine}) async {
     return await businessCollection.document(uid).setData({
+      'uid': uid,
       'businessName': businessName,
       'category' : category,
       'maxCap': maxCap,
-      'peopleInLine': 0,
+      'peopleInLine': peopleInLine,
     });
   }
 
@@ -38,7 +44,7 @@ class DatabaseService {
 
   BusinessData _businessDataFromSnapshot(DocumentSnapshot snapshot) {
     return BusinessData(
-      uid: uid,
+      uid: snapshot.data['uid'],
       businessName: snapshot.data['businessName'],
       category: snapshot.data['category'],
       maxCap: snapshot.data['maxCap'],
@@ -60,6 +66,23 @@ class DatabaseService {
   Stream<CustomerData> get customerData {
     return customerCollection.document(uid).snapshots()
         .map(_customerDataFromSnapshot);
+  }
+
+  List<BusinessData> _businessListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc){
+      return BusinessData(
+        uid: doc.data['uid'].trim(),
+        businessName: doc.data['businessName'],
+        category: doc.data['category'],
+        peopleInLine: doc.data['peopleInLine']
+      );
+    }).toList();
+  }
+
+
+  Stream<List<BusinessData>> get businesses {
+    return businessCollection.snapshots()
+        .map(_businessListFromSnapshot);
   }
 
 }

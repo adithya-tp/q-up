@@ -15,5 +15,6 @@ class BusinessData {
   final String businessName;
   final String category;
   final int maxCap;
-  BusinessData({this.uid, this.businessName, this.category, this.maxCap});
+  final int peopleInLine;
+  BusinessData({this.uid, this.businessName, this.category, this.maxCap, this.peopleInLine});
 }

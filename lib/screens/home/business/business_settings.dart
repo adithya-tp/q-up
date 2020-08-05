@@ -95,9 +95,11 @@ class _BusinessSettingsState extends State<BusinessSettings> {
                               fontWeight: FontWeight.w800,
                             ),
                             onChanged: (val) {
-                              setState(() {
-                                _businessName = val;
-                              });
+                              if(mounted) {
+                                setState(() {
+                                  _businessName = val;
+                                });
+                              }
                             },
                           ),
                           SizedBox(height: 10.0,),
@@ -126,10 +128,17 @@ class _BusinessSettingsState extends State<BusinessSettings> {
                                 ),
                               );
                             }).toList(),
-                            onChanged: (val) => setState(() => _category = val ),
+                            onChanged: (val) {
+                              if(mounted) {
+                                setState(() {
+                                  _category = val;
+                                });
+                              }
+                            }
                           ),
                           SizedBox(height: 10.0,),
                           TextFormField(
+                            initialValue: "${snapshot.data.maxCap}",
                             keyboardType: TextInputType.number,
                             inputFormatters: <TextInputFormatter>[
                               WhitelistingTextInputFormatter.digitsOnly
@@ -161,9 +170,11 @@ class _BusinessSettingsState extends State<BusinessSettings> {
                               fontWeight: FontWeight.w800,
                             ),
                             onChanged: (val) {
-                              setState(() {
-                                _maxCap = int.parse(val);
-                              });
+                              if(mounted) {
+                                setState(() {
+                                  _maxCap = int.parse(val);
+                                });
+                              }
                             },
                           ),
                           Row(
@@ -178,7 +189,7 @@ class _BusinessSettingsState extends State<BusinessSettings> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 100.0,),
+                          SizedBox(height: 60.0,),
                           RaisedButton(
                             color: Colors.amber,
                             child: Text(

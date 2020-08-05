@@ -19,7 +19,7 @@ class FireBaseAuthMethods {
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       print("Done with business user authentication");
       FirebaseUser user = result.user;
-      await DatabaseService(uid: user.uid).updateBusinessData(businessName: businessName, category: category, maxCap: maxCap);
+      await DatabaseService(uid: user.uid).updateBusinessData(businessName: businessName, category: category, maxCap: maxCap, peopleInLine: 0);
       print("Created document in business collection");
       await DatabaseService(uid: user.uid).updateUserData(isCustomer: false);
       print("Created document in users collection");
