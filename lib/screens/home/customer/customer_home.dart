@@ -16,6 +16,27 @@ class _CustomerHomeState extends State<CustomerHome> {
     return qn.documents;
   }
 
+  void _issueTicketModalSheet() {
+//    showModalBottomSheet(context: context,
+//        builder: (context) {
+//          return Container(
+//            color: Color(0XFF737373),
+////            height: 150,
+//            child: Container(
+//              child: BuildBottomMenu(),
+//              decoration: BoxDecoration(
+//                color: Theme.of(context).canvasColor,
+//                borderRadius: BorderRadius.only(
+//                  topLeft: const Radius.circular(15),
+//                  topRight: const Radius.circular(15)
+//                ),
+//              ),
+//            ),
+//          );
+//          },
+//    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -79,8 +100,73 @@ class _CustomerHomeState extends State<CustomerHome> {
                           SizedBox(height: 18.0,),
                           GestureDetector(
                             onTap: () {
-                              // TODO: Show Bottom Modal Page for seletion from "Popular" List along with generate qr code option
-                              print(snapshot.data[index].data["businessName"]);
+                              // TODO: Show Bottom Modal Page for selection from "Popular" List along with generate qr code option
+                              showModalBottomSheet(context: context,
+                                builder: (context) {
+                                  return Container(
+                                    color: Color(0XFF737373),
+                                    child: Container(
+                                      child: Column(
+                                        children: <Widget>[
+                                          Container(
+                                            padding: EdgeInsets.fromLTRB(18.0, 20.0, 0.0, 10.0),
+                                            child: Text(
+                                              "${ snapshot.data[index].data["businessName"] }",
+                                              style: GoogleFonts.robotoSlab(
+                                                color: Colors.black,
+                                                fontSize: 25.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Container(
+                                                padding: EdgeInsets.fromLTRB(18.0, 7.0, 0.0, 10.0),
+                                                child: Text(
+                                                  "People currently in queue: 0",
+                                                  style: GoogleFonts.robotoSlab(
+                                                    color: Colors.black,
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Column(
+//            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              ListTile(
+                                                leading: Icon(Icons.calendar_today),
+                                                title: Text("Queue up"),
+                                                onTap: () {
+                                                  print("Ticket issued!");
+                                                },
+                                              ),
+                                              ListTile(
+                                                leading: Icon(Icons.cancel),
+                                                title: Text("Cancel ticket"),
+                                                onTap: () {
+                                                  print("Ticket cancelled");
+                                                },
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context).canvasColor,
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: const Radius.circular(15),
+                                            topRight: const Radius.circular(15)
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                              // print(snapshot.data[index].data["businessName"]);
                             },
                             child: Stack(
                               children: <Widget>[
