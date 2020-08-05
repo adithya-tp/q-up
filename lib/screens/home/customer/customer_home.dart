@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:y_wait/screens/home/customer/carousel.dart';
+import 'package:y_wait/services/generateQR.dart';
 
 class CustomerHome extends StatefulWidget {
   @override
@@ -16,25 +17,25 @@ class _CustomerHomeState extends State<CustomerHome> {
     return qn.documents;
   }
 
-  void _issueTicketModalSheet() {
-//    showModalBottomSheet(context: context,
-//        builder: (context) {
-//          return Container(
-//            color: Color(0XFF737373),
-////            height: 150,
-//            child: Container(
-//              child: BuildBottomMenu(),
-//              decoration: BoxDecoration(
-//                color: Theme.of(context).canvasColor,
-//                borderRadius: BorderRadius.only(
-//                  topLeft: const Radius.circular(15),
-//                  topRight: const Radius.circular(15)
-//                ),
-//              ),
-//            ),
-//          );
-//          },
-//    );
+  void _showQR() {
+    showModalBottomSheet(context: context,
+        builder: (context) {
+          return Container(
+            color: Color(0XFF737373),
+            height: 500,
+            child: Container(
+              child: GenerateQR(),
+              decoration: BoxDecoration(
+                color: Theme.of(context).canvasColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(15),
+                  topRight: const Radius.circular(15)
+                ),
+              ),
+            ),
+          );
+          },
+    );
   }
 
   @override
@@ -105,6 +106,7 @@ class _CustomerHomeState extends State<CustomerHome> {
                                 builder: (context) {
                                   return Container(
                                     color: Color(0XFF737373),
+                                    height: 190,
                                     child: Container(
                                       child: Column(
                                         children: <Widget>[
@@ -135,22 +137,15 @@ class _CustomerHomeState extends State<CustomerHome> {
                                             ],
                                           ),
                                           Column(
-//            mainAxisAlignment: MainAxisAlignment.center,
                                             children: <Widget>[
                                               ListTile(
                                                 leading: Icon(Icons.calendar_today),
                                                 title: Text("Queue up"),
                                                 onTap: () {
-                                                  print("Ticket issued!");
+                                                  Navigator.pop(context);
+                                                  _showQR();
                                                 },
                                               ),
-                                              ListTile(
-                                                leading: Icon(Icons.cancel),
-                                                title: Text("Cancel ticket"),
-                                                onTap: () {
-                                                  print("Ticket cancelled");
-                                                },
-                                              )
                                             ],
                                           ),
                                         ],
@@ -166,7 +161,6 @@ class _CustomerHomeState extends State<CustomerHome> {
                                   );
                                 },
                               );
-                              // print(snapshot.data[index].data["businessName"]);
                             },
                             child: Stack(
                               children: <Widget>[
