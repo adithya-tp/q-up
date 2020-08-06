@@ -85,4 +85,18 @@ class DatabaseService {
         .map(_businessListFromSnapshot);
   }
 
+  List<CustomerTickets> _customerTicketsFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc){
+      return CustomerTickets(
+        businessName: doc.data['businessName'],
+        positionInLine: doc.data['positionInLine'],
+      );
+    }).toList();
+  }
+
+  Stream<List<CustomerTickets>> get customerTickets {
+    return Firestore.instance.collection('${this.uid}').snapshots()
+        .map(_customerTicketsFromSnapshot);
+  }
+
 }

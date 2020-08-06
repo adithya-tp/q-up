@@ -18,3 +18,9 @@ class BusinessData {
   final int peopleInLine;
   BusinessData({this.uid, this.businessName, this.category, this.maxCap, this.peopleInLine});
 }
+
+class CustomerTickets{
+  final String businessName;
+  final int positionInLine;
+  CustomerTickets({this.businessName, this.positionInLine});
+}

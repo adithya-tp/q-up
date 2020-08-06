@@ -6,6 +6,7 @@ import 'package:y_wait/models/user.dart';
 import 'package:y_wait/screens/authenticate/authenticate.dart';
 import 'package:y_wait/screens/home/customer/customer_home.dart';
 import 'package:y_wait/screens/home/customer/customer_settings.dart';
+import 'package:y_wait/screens/home/customer/customer_tickets.dart';
 import 'package:y_wait/services/auth.dart';
 
 class CustomerNavBar extends StatefulWidget {
@@ -19,7 +20,7 @@ class _CustomerNavBarState extends State<CustomerNavBar> {
   String username;
   int selectedIndex = 1;
   final tabs = [
-    Center(child: Text("Tickets")),
+    CustomerTicket(),
     CustomerHome(),
     CustomerSettings(),
   ];
