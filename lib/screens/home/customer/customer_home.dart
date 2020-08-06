@@ -43,6 +43,7 @@ class _CustomerHomeState extends State<CustomerHome> {
       'uid': user.userId.trim(),
       // we should be able to delete this customer name later down the line.
       'customerName': snapshot.data["customerName"],
+      'positionInLine': businessData.peopleInLine + 1
     });
     await specificCustomerCollection.document(businessData.uid.trim()).setData({
       'uid': businessData.uid.trim(),
