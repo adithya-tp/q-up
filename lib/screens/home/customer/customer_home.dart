@@ -54,7 +54,9 @@ class _CustomerHomeState extends State<CustomerHome> {
     print(businessData);
     print(businessData.uid);
     await businessCollection.document(businessData.uid.trim()).updateData({
-      'peopleInLine': businessData.peopleInLine + 1
+      'peopleInLine': businessData.peopleInLine + 1,
+//      'people' : businessData.people.add(user.userId.trim()),
+      'people' : FieldValue.arrayUnion([user.userId.trim()]),
     });
   }
 

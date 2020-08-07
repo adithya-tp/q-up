@@ -16,6 +16,7 @@ class BusinessData {
   final String category;
   final int maxCap;
   final int peopleInLine;
+  final List<String> people = null;
   BusinessData({this.uid, this.businessName, this.category, this.maxCap, this.peopleInLine});
 }
 

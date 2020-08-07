@@ -20,6 +20,12 @@
       "languageVersion": "2.2"
     },
     {
+      "name": "barcode_scan",
+      "rootUri": "file:///C:/Users/Dhruv/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/barcode_scan-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "boolean_selector",
       "rootUri": "file:///C:/Users/Dhruv/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/boolean_selector-2.0.0",
       "packageUri": "lib/",
@@ -132,6 +138,12 @@
       "rootUri": "file:///C:/Users/Dhruv/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+2",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "fixnum",
+      "rootUri": "file:///C:/Users/Dhruv/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/fixnum-0.10.11",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
     },
     {
       "name": "flutter",
@@ -278,6 +290,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "protobuf",
+      "rootUri": "file:///C:/Users/Dhruv/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/protobuf-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "provider",
       "rootUri": "file:///C:/Users/Dhruv/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/provider-4.3.1",
       "packageUri": "lib/",
@@ -404,7 +422,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-08-05T13:38:40.543032Z",
+  "generated": "2020-08-07T13:08:11.781941Z",
   "generator": "pub",
   "generatorVersion": "2.8.4"
 }

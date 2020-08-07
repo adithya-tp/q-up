@@ -22,6 +22,7 @@ class DatabaseService {
       'category' : category,
       'maxCap': maxCap,
       'peopleInLine': peopleInLine,
+      'people' : [],
     });
   }
 

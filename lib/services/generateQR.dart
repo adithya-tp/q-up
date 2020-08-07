@@ -46,7 +46,7 @@ class _GenerateQRState extends State<GenerateQR> {
             ),
             Container(
               child: QrImage(
-                data: user.userId,
+                data: "${user.userId} ${widget.businessData.businessName}",
                 size: 200,
               ),
             ),
