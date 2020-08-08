@@ -1,4 +1,4 @@
-#Fri Aug 07 17:15:31 GST 2020
+#Sat Aug 08 22:47:46 GST 2020
 base.2=C\:\\Users\\Dhruv\\Desktop\\q-up\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes2.dex
 base.1=C\:\\Users\\Dhruv\\Desktop\\q-up\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\out\\classes.dex
 base.0=C\:\\Users\\Dhruv\\Desktop\\q-up\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex

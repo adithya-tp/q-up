@@ -6,8 +6,9 @@ class User {
 class CustomerData {
   final String uid;
   final String customerName;
+  final bool inStore = false;
 
-  CustomerData({this.uid, this.customerName});
+  CustomerData({ this.uid, this.customerName });
 }
 
 class BusinessData {
@@ -17,11 +18,13 @@ class BusinessData {
   final int maxCap;
   final int peopleInLine;
   final List<String> people = null;
-  BusinessData({this.uid, this.businessName, this.category, this.maxCap, this.peopleInLine});
+  final List<String> inStore = null;
+  BusinessData({ this.uid, this.businessName, this.category, this.maxCap, this.peopleInLine });
 }
 
 class CustomerTickets{
   final String businessName;
   final int positionInLine;
-  CustomerTickets({this.businessName, this.positionInLine});
+  final String uid;
+  CustomerTickets({ this.businessName, this.positionInLine, this.uid });
 }

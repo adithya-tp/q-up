@@ -23,6 +23,7 @@ class DatabaseService {
       'maxCap': maxCap,
       'peopleInLine': peopleInLine,
       'people' : [],
+      'inStore' :[],
     });
   }
 
@@ -91,6 +92,7 @@ class DatabaseService {
       return CustomerTickets(
         businessName: doc.data['businessName'],
         positionInLine: doc.data['positionInLine'],
+        uid: doc.data['uid'],
       );
     }).toList();
   }

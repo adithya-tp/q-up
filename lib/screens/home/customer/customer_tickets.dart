@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,6 +36,7 @@ class _CustomerTicketState extends State<CustomerTicket> {
                         child: Text("Loading..."),
                       );
                     } else {
+                      String someOtherVarName;
                       return GestureDetector(
                         onTap: () {
                           showModalBottomSheet(context: context,
@@ -45,7 +47,7 @@ class _CustomerTicketState extends State<CustomerTicket> {
                                 child: Container(
                                   child: Container(
                                     child: QrImage(
-                                      data: user.userId,
+                                      data: "${user.userId} $someOtherVarName",
                                       size: 150,
                                     ),
                                   ),
@@ -66,6 +68,10 @@ class _CustomerTicketState extends State<CustomerTicket> {
                             shrinkWrap: true,
                             itemCount: snapshot.data.length,
                             itemBuilder: (_, index) {
+                              final CollectionReference businessCollection = Firestore.instance.collection("business");
+                              print(snapshot.data);
+                              String bName;
+                              businessCollection.document(snapshot.data[index].uid).get().then((DocumentSnapshot ds) { someOtherVarName = ds.data["businessName"]; bName = ds.data["businessName"]; });
                               return Container(
                                 margin: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
@@ -93,7 +99,7 @@ class _CustomerTicketState extends State<CustomerTicket> {
                                           Column(
                                             children: <Widget>[
                                               QrImage(
-                                                data: user.userId,
+                                                data: "${user.userId} $bName",
                                                 size: 140,
                                               ),
                                             ],
