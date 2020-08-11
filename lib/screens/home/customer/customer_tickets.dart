@@ -75,7 +75,7 @@ class _CustomerTicketState extends State<CustomerTicket> {
                               return Container(
                                 margin: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: Colors.grey[100],
                                   boxShadow: [
                                     BoxShadow(color: Colors.grey.withOpacity(0.8),
                                         spreadRadius: 5.0,
@@ -98,9 +98,10 @@ class _CustomerTicketState extends State<CustomerTicket> {
                                         children: <Widget>[
                                           Column(
                                             children: <Widget>[
-                                              QrImage(
-                                                data: "${user.userId} $bName",
-                                                size: 140,
+                                              Image(
+                                                image: AssetImage("assets/images/ticket.png"),
+                                                width: 150.0,
+                                                height: 150.0,
                                               ),
                                             ],
                                           ),

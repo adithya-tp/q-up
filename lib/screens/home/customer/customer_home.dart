@@ -33,18 +33,18 @@ class _CustomerHomeState extends State<CustomerHome> {
   }
 
   _addToQ(User user, BusinessData businessData) async {
-    final CollectionReference specificBusinessCollection = Firestore.instance.collection(businessData.uid.trim());
+//    final CollectionReference specificBusinessCollection = Firestore.instance.collection(businessData.uid.trim());
     final CollectionReference specificCustomerCollection = Firestore.instance.collection(user.userId.trim());
-    final CollectionReference customerCollection = Firestore.instance.collection('customers');
+//    final CollectionReference customerCollection = Firestore.instance.collection('customers');
     final CollectionReference businessCollection = Firestore.instance.collection('business');
 
-    final snapshot = await customerCollection.document(user.userId.trim()).get();
-    await specificBusinessCollection.document(user.userId.trim()).setData({
-      'uid': user.userId.trim(),
-      // we should be able to delete this customer name later down the line.
-      'customerName': snapshot.data["customerName"],
-      'positionInLine': businessData.peopleInLine + 1
-    });
+//    final snapshot = await customerCollection.document(user.userId.trim()).get();
+//    await specificBusinessCollection.document(user.userId.trim()).setData({
+//      'uid': user.userId.trim(),
+//      // we should be able to delete this customer name later down the line.
+//      'customerName': snapshot.data["customerName"],
+//      'positionInLine': businessData.peopleInLine + 1
+//    });
     await specificCustomerCollection.document(businessData.uid.trim()).setData({
       'uid': businessData.uid.trim(),
       // we should be able to delete this business name later down the line.

@@ -12,20 +12,21 @@ class BusinessHome extends StatefulWidget {
 
 class _BusinessHomeState extends State<BusinessHome> {
   String result = "Latest Scanned Ticket: None";
-  String image = "https://is5-ssl.mzstatic.com/image/thumb/Purple123/v4/db/9e/ee/db9eee75-b8bc-6656-39c6-9ba2c84f7612/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/246x0w.png";
+  String image = "assets/images/default_scan.png";
 
   Future<int> validateScan(String uid, String customer) async {
     final CollectionReference businessCollection = Firestore.instance.collection("business");
     final CollectionReference customerCollection = Firestore.instance.collection("customers");
     List<String> customerData = customer.split(" ");
+    String bidnessName = customerData.sublist(1, customerData.length).join(' ');
     bool inStore = await customerCollection.document(customerData[0]).get().then((DocumentSnapshot ds) => ds.data["inStore"]);
     String bName = await businessCollection.document(uid).get().then((DocumentSnapshot ds) => ds.data["businessName"]);
 
     if(!inStore) {
-      List<String> person = await businessCollection.document(uid).get().then((DocumentSnapshot ds) => ds.data["people"]);
+      List<dynamic> person = await businessCollection.document(uid).get().then((DocumentSnapshot ds) => ds.data["people"]);
       int peopleInLine = await businessCollection.document(uid).get().then((DocumentSnapshot ds) => ds.data["peopleInLine"]);
       if(person.isNotEmpty) {
-        if(customerData[0] == person[0].toString() && customerData[1] == bName) {
+        if(customerData[0] == person[0].toString() && bidnessName == bName) {
           print("Granted entry!");
           await businessCollection.document(uid).updateData({
             "people": FieldValue.arrayRemove([customerData[0]]),
@@ -41,7 +42,7 @@ class _BusinessHomeState extends State<BusinessHome> {
       }
     }
     else if(inStore) {
-      if(customerData[1] == bName) {
+      if(bidnessName == bName) {
         print("Checkout Successful!");
         await businessCollection.document(uid).updateData({
           "inStore": FieldValue.arrayRemove([customerData[0]]),
@@ -63,55 +64,134 @@ class _BusinessHomeState extends State<BusinessHome> {
   @override
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context);
+
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 100,),
-            Text(result,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.robotoSlab(
-              fontSize: 15.0,
-              fontWeight: FontWeight.w600,
-            )),
-            SizedBox(height: 20.0,),
-            Container(
-              child: Image(
-                image: NetworkImage(
-                  image
+      body: SingleChildScrollView(
+        child: Center(
+            child: Column(
+              children: <Widget>[
+                Row(
+//                crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Container(
+                      height: 80.0,
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(height: 20),
+                          Text(
+                              "Scan Customer Tickets",
+                              style: GoogleFonts.robotoSlab(
+                                color: Colors.white,
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.w600,
+                              )
+                          ),
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(25.0),
+                          bottomRight: Radius.circular(25.0),
+                        ),
+                        gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color(0xff7F00FF),
+                              Color(0xffE100FF),
+                            ]
+                        ),
+                        boxShadow: [
+                          BoxShadow(color: Colors.grey.withOpacity(0.8),
+                              spreadRadius: 5.0,
+                              blurRadius: 7.0,
+                              offset: Offset(0, 3)),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              height: 200,
-            ),
-            RaisedButton(
-              onPressed: () async {
-                var scanning = await BarcodeScanner.scan();
-                int granted = await validateScan(user.userId, scanning.rawContent);
-                if(granted == 1) {
-                  setState(() {
-                    result = "Your ticket has been validated!";
-                    image = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQSYLCgYmsWzps-k4-DSaySLiCKaJxGV2A8ow&usqp=CAU";
-                  });
-                }
-                else if (granted == 2) {
-                  setState(() {
-                    result = "Checkout successful!";
-                    image = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQSYLCgYmsWzps-k4-DSaySLiCKaJxGV2A8ow&usqp=CAU";
-                  });
-                }
-                else {
-                  setState(() {
-                    result = "Invalid ticket!";
-                    image = "https://media1.thehungryjpeg.com%2Fthumbs2%2Fori_3492754_88a3f58393f5cf49f38c7707a038c956be66b6e0_stop-sign-symbol-warning-stopping-icon-prohibitory-character-or-traf.jpg";
-                  });
-                }
-              },
-              child: Text("Scan Ticket"),
-            ),
-          ],
-        )
+                SizedBox(height: 60,),
+                Stack(
+                  children: <Widget>[
+                    Center(
+                      child: Container(
+                        //margin: EdgeInsets.only(top: 160.0, left: 15.0, right: 15.0),
+                        height: 450.0,
+                        width: 350.0,
+                        decoration: BoxDecoration(
+//                        boxShadow: [
+//                          BoxShadow(color: Colors.grey.withOpacity(0.8),
+//                              spreadRadius: 5.0,
+//                              blurRadius: 7.0,
+//                              offset: Offset(0, 3)),
+//                        ],
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.blueAccent.withOpacity(0.4),
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(height: 20.0,),
+                          Text(result, textAlign: TextAlign.center, style: GoogleFonts.robotoSlab(fontSize: 20, fontWeight: FontWeight.w600),),
+                          SizedBox(height: 5.0,),
+                          Container(
+                            height: 300.0,
+                            width: 250.0,
+                            child: Image(
+                              image: AssetImage(image),
+                            ),
+                          ),
+                          SizedBox(height: 5.0,),
+                          RaisedButton(
+                            onPressed: () async {
+                              var scanning = await BarcodeScanner.scan();
+                              int granted = await validateScan(user.userId, scanning.rawContent);
+                              print(granted);
+                              if(granted == 1) {
+                                setState(() {
+                                  result = "Success! You've been checked in!";
+                                  image = "assets/images/success.png";
+                                });
+                              }
+
+                              else if(granted == 2) {
+                                setState(() {
+                                  result = "Checkout Successful!";
+                                  image = "assets/images/success.png";
+                                });
+                              }
+
+                              else {
+                                setState(() {
+                                  result = "Invalid Ticket!";
+                                  image = "assets/images/fail.png";
+                                });
+                              }
+                            },
+                            child: Text(
+                                "Scan Ticket",
+                                style: GoogleFonts.robotoSlab(
+                                  color: Colors.black,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w600,
+                                )
+                            ),
+                            color: Colors.amber,
+                          ),
+                          SizedBox(height: 100,),
+                        ],
+                      ),
+                    )
+                  ],
+                )
+              ],
+            )
+        ),
       ),
-      backgroundColor: Colors.white,
     );
   }
 }
