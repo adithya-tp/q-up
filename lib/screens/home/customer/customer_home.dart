@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:y_wait/main.dart';
 import 'package:y_wait/models/user.dart';
 import 'package:y_wait/screens/home/customer/carousel.dart';
 import 'package:y_wait/services/database.dart';
@@ -33,18 +34,18 @@ class _CustomerHomeState extends State<CustomerHome> {
   }
 
   _addToQ(User user, BusinessData businessData) async {
-//    final CollectionReference specificBusinessCollection = Firestore.instance.collection(businessData.uid.trim());
+    final CollectionReference specificBusinessCollection = Firestore.instance.collection(businessData.uid.trim());
     final CollectionReference specificCustomerCollection = Firestore.instance.collection(user.userId.trim());
-//    final CollectionReference customerCollection = Firestore.instance.collection('customers');
+    final CollectionReference customerCollection = Firestore.instance.collection('customers');
     final CollectionReference businessCollection = Firestore.instance.collection('business');
 
-//    final snapshot = await customerCollection.document(user.userId.trim()).get();
-//    await specificBusinessCollection.document(user.userId.trim()).setData({
-//      'uid': user.userId.trim(),
-//      // we should be able to delete this customer name later down the line.
-//      'customerName': snapshot.data["customerName"],
-//      'positionInLine': businessData.peopleInLine + 1
-//    });
+    final snapshot = await customerCollection.document(user.userId.trim()).get();
+    await specificBusinessCollection.document(user.userId.trim()).setData({
+      'uid': user.userId.trim(),
+      // we should be able to delete this customer name later down the line.
+      'customerName': snapshot.data["customerName"],
+      'positionInLine': businessData.peopleInLine + 1
+    });
     await specificCustomerCollection.document(businessData.uid.trim()).setData({
       'uid': businessData.uid.trim(),
       // we should be able to delete this business name later down the line.
@@ -219,19 +220,39 @@ class _CustomerHomeState extends State<CustomerHome> {
                                                   ),
                                                 ],
                                               ),
-                                              Column(
+                                              SizedBox(height: 15.0,),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
                                                 children: <Widget>[
-                                                  ListTile(
-                                                    leading: Icon(Icons.calendar_today),
-                                                    title: Text("Queue up"),
-                                                    onTap: () {
-//                                                      print(snapshot.data[index].runtimeType);
-//                                                      print(snapshot.data[index].businessName);
-//                                                      print(snapshot.data[index].category);
-//                                                      print(snapshot.data[index].uid);
-                                                      Navigator.pop(context);
-                                                      _showQR(user, snapshot.data[index]);
-                                                    },
+                                                  Container(
+                                                    child: FlatButton(
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                        _showQR(user, snapshot.data[index]);
+                                                      },
+                                                      child: Row(
+                                                        children: <Widget>[
+                                                          Padding(
+                                                            padding: EdgeInsets.fromLTRB(2.0, 5.0, 10.0, 5.0),
+                                                            child: Container(
+                                                              child: Image(image: AssetImage("assets/images/queue.png"),),
+                                                              width: 35,
+                                                              height: 35,
+                                                            ),
+                                                          ),
+                                                          Text("Queue Up!",
+                                                          style: GoogleFonts.robotoSlab(
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: 18,
+                                                            color: Colors.black
+                                                          ),),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.amber[300],
+                                                      borderRadius: BorderRadius.circular(25.0)
+                                                    ),
                                                   ),
                                                 ],
                                               ),
