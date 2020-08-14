@@ -6,13 +6,12 @@
   Waiting in long lines are now a thing of the past!
 </h1>
 <br>
-<br>
 
 <h2 align="center"> 
   For the app walkthrough videos and details, check out our
 </h2>
 
 <h3 align="center">
-  HCL Better Health Hackathon 2020 project page: <br>
-  <a href="https://hclbetterhealth-platform.bemyapp.com/#/projects/5f35372ac337f4001bf06f36">Project Page</a>
+  HCL Better Health Hackathon 2020 project page
+  <a href="https://hclbetterhealth-platform.bemyapp.com/#/projects/5f35372ac337f4001bf06f36">here.</a>
 </h3>
