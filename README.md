@@ -8,11 +8,11 @@
 <br>
 <br>
 
-<h1 align="center"> 
-  For App Walkthrough Videos and Details, check out
-</h1>
+<h2 align="center"> 
+  For the app walkthrough videos and details, check out our
+</h2>
 
-<h2 align="center">
+<h3 align="center">
   HCL Better Health Hackathon 2020 project page: <br>
   <a href="https://hclbetterhealth-platform.bemyapp.com/#/projects/5f35372ac337f4001bf06f36">Project Page</a>
-</h2>
+</h3>
