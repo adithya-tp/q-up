@@ -22,6 +22,6 @@
 </h3>
 
 <h3 align="center">
-  :clapper: And maybe even a *promo* video
+  :clapper: And maybe even a <i>promo</i> video
   <a href="https://www.youtube.com/watch?v=UPNg2jpO2Tc">here!</a>
 </h3>
