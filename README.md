@@ -12,8 +12,8 @@
 </h2>
 
 <h3 align="center">
-  HCL Better Health Hackathon 2020 project page
-  <a href="https://hclbetterhealth-platform.bemyapp.com/#/projects/5f35372ac337f4001bf06f36">here.</a>
+  DevPost 2020 project page
+  <a href="https://devpost.com/software/q-up?ref_content=user-portfolio&ref_feature=in_progress">here.</a>
 </h3>
 
 <h3 align="center">
